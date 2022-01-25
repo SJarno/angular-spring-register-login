@@ -1,4 +1,24 @@
-<section class="container">
-  <h1>{{title}}</h1>
-  <h2>Onko kirjautunut: {{authenticated}}</h2>
-</section>
+<app-navigation></app-navigation>
+<main class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <h1>{{title}}</h1>
+    </div>
+    <div class="col"></div>
+  </div>
+  <section class="row">
+    <div class="col">
+      <section>
+        <h2>Tiedot</h2>
+        <h3>Onko kirjautunut: {{authenticated}}</h3>
+      </section>
+    </div>
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col"></div>
+  </section>
+  
+</main>
+
