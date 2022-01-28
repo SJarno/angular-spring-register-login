@@ -11,7 +11,11 @@ import { PublicDataComponent } from './public-data/public-data.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { InterceptorService } from './interceptor.service';
+
+
+import { ErrorInterceptorService } from './services/error-interceptor.service';
+import { LoginInterceptorService } from './services/login-interceptor.service';
+
 import { SecretComponent } from './secret/secret.component';
 import { AdminComponent } from './admin/admin.component';
 
@@ -33,7 +37,10 @@ import { AdminComponent } from './admin/admin.component';
     FormsModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: LoginInterceptorService, multi: true}
+    ,
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true}
+    
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServerRequestsService } from '../server-requests.service';
+import { ServerRequestsService } from '../services/server-requests.service';
 
 @Component({
   selector: 'app-admin',

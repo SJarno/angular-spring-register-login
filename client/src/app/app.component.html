@@ -12,7 +12,8 @@
     <div class="col">
       <section>
         <h2>Tiedot</h2>
-        <h3>Onko kirjautunut: {{authenticated}}</h3>
+        <button (click)="logout()" *ngIf="authenticated()">logout</button>
+        <h3>Onko kirjautunut: {{authenticated()}}</h3>
       </section>
     </div>
     <div class="col">

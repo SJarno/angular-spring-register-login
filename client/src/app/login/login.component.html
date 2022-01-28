@@ -1,4 +1,4 @@
-<form>
+<form role="form" (submit)="login()">
     <table >
         <thead>
             <tr>
@@ -10,13 +10,13 @@
                 <td><label for="username">Username:</label></td>
             </tr>
             <tr>
-                <td><input type="text" name="username"></td>
+                <td><input type="text" name="username" [(ngModel)]="credentials.username"></td>
             </tr>
             <tr>
                 <td><label for="password">Password</label></td>
             </tr>
             <tr>
-                <td><input type="password" name="password"></td>
+                <td><input type="password" name="password" [(ngModel)]="credentials.password"></td>
             </tr>
         </tbody>
         <tfoot>

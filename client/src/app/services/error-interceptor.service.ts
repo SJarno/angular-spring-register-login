@@ -5,16 +5,13 @@ import { catchError, Observable, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class InterceptorService implements HttpInterceptor {
-  errorMessage: string | undefined;
-  constructor(
+export class ErrorInterceptorService implements HttpInterceptor{
 
-  ) { }
-
+  constructor() { }
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Jotain meni vikaan, yritä myöhemmin uudelleen.'
     
-    if (error.status === 0) {
+    if (error.status === 0 ) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('Tapahtui virhe:', error.error);
     } else {
@@ -24,7 +21,8 @@ export class InterceptorService implements HttpInterceptor {
         `Backend palautti koodin ${error.status}, runko: `, error.error);
     }
     // display error on browser:
-    window.alert(errorMessage);
+    //window.alert(errorMessage);
+    console.error(errorMessage);
     // Return an observable with a user-facing error message.
     return throwError(() =>
       errorMessage);
