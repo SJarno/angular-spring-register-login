@@ -22,9 +22,16 @@ export class AppComponent {
   logout() {
     this.http.post(environment.baseUrl+'logout', {}).pipe( finalize(() => {
       this.auth.authenticated = false;
+      this.auth.authorities = [];
+      this.auth.username = '';
       this.router.navigateByUrl('/');
     })).subscribe();
   }
   /* Check on the upper level if user is authenticated, can be mode to a user page if necessary:  */
   authenticated() { return this.auth.authenticated; }
+  userRole(role: string) { return this.auth.listContainsRole(role); }
+  getUsername() { return this.auth.username; }
+  getRoles() {
+    return this.auth.authorities;
+  }
 }

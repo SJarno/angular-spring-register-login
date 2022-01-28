@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'secret', component: SecretComponent},
   { path: 'admin', component: AdminComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: '**', component: PageNotFoundComponent}
+  { path: 'not-found', component: PageNotFoundComponent},
+  { path: '**', redirectTo: 'not-found'}
 ];
 
 @NgModule({

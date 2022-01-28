@@ -10,10 +10,18 @@
   </div>
   <section class="row">
     <div class="col">
-      <section>
-        <h2>Tiedot</h2>
+      <section *ngIf="authenticated()">
+        <h2>Userinfo:</h2>
         <button (click)="logout()" *ngIf="authenticated()">logout</button>
-        <h3>Onko kirjautunut: {{authenticated()}}</h3>
+        <h3>Username: {{getUsername()}}</h3>
+        <h3>Authenticated: {{authenticated()}}</h3>
+        <h3>Role User: {{userRole('USER')}}</h3>
+        <h3>Role Secret: {{userRole('SECRET')}}</h3>
+        <h3>Role Admin: {{userRole('ADMIN')}}</h3>
+        <h3>List all available roles:</h3>
+        <ul *ngFor="let role of getRoles()">
+          <li>{{role.authority}}</li>
+        </ul>
       </section>
     </div>
     <div class="col">
