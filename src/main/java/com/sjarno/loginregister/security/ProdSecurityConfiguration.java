@@ -34,7 +34,7 @@ public class ProdSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/runtime*.js", "/vendor*.js", "/styles*.css",
             "/favicon.ico", "*.bundle.*", "/public/**", "/not-found"
         };
-        http.headers().frameOptions().sameOrigin();
+        
 
         http.httpBasic()
                     .and()
@@ -66,6 +66,7 @@ public class ProdSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .password("adminpass")
             .authorities("ROLE_ADMIN")
             .build();
+            
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(userCustomer);
         manager.createUser(userSecret);

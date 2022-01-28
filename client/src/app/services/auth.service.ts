@@ -47,7 +47,7 @@ export class AuthService {
       return callback && callback();
     });
   }
-  /* For testing */
+  /* For */
   printForTesting(list: []) {
     console.log("Tulostetaan: ")
     list.forEach(element => {
@@ -55,7 +55,10 @@ export class AuthService {
     })
   }
   listContainsRole(role: string) {
-    return this.authorities.some(function (el: any) { return el.authority === role });
+    /* return this.authorities.some(function (el: any) { return el.authority === role }); */
+    
+    return this.authorities.some((auth: { authority: string; }) => auth.authority === role)
+    
   }
 
 }
