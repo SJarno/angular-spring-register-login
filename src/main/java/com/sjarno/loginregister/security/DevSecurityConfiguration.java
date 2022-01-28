@@ -28,15 +28,16 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         
         http.csrf().disable();
+        /* http.headers().frameOptions().disable(); */
 
         http.cors().and()
                     .httpBasic()
                     .and()
                     .authorizeRequests()
                     .antMatchers("/","/index.html",
-                                "/login", "/main*.js*", "/polyfills*.js",
-                                "/runtime*.js", "/vendor*.js*", "/styles*.css*",
-                                "/favicon.ico", "*.bundle.*", "/public/**").permitAll()
+                                "/login", "/main*.js", "/polyfills*.js",
+                                "/runtime*.js", "/vendor*.js", "/styles*.css",
+                                "/favicon.ico", "*.bundle.*", "/public/**", "/logout").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());

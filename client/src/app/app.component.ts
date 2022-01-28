@@ -25,6 +25,6 @@ export class AppComponent {
       this.router.navigateByUrl('/');
     })).subscribe();
   }
-  /* Ylätasolla halutaan tarkistaa onko käyttäjä kirjautunut:  */
+  /* Check on the upper level if user is authenticated, can be mode to a user page if necessary:  */
   authenticated() { return this.auth.authenticated; }
 }
