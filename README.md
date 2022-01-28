@@ -19,10 +19,12 @@ Bootsrap 5
  Spring Boot 2.6.3
  - Spring Security
 
+## Development
+- You can build continuesly to static file path with ng build --watch. Usefull if you are serving the content from root.
+
 ## Security
 Basic authentication with Spring Security. The app checks for user principal, and shows content accordingly.
 
 ## Todo: 
 - Role based auth, for secret role, and admin role: In-memory users first, and basic register functions then.
-- Should check on cors policy, as it is not functioning atm. 
-    - The project works fine from the root, when serving static content. Requires to build the angular client first, and then running spring.
+- Check for cors policy for fututer reference
