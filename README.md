@@ -19,3 +19,8 @@ Bootsrap 5
  Spring Boot 2.6.3
  - Spring Security
 
+## Security
+Basic authentication with Spring Security. The app checks for user principal, and shows content accordingly.
+
+## Todo: 
+- Role based auth, for secret role, and admin role. 
