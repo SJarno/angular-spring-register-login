@@ -2,6 +2,7 @@ package com.sjarno.loginregister.security;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
@@ -24,57 +27,40 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @EnableWebSecurity
 public class ProdSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private CustomUserdetailsService userDetails;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.headers().frameOptions().sameOrigin();
         String[] staticResources = new String[] {
-            "/","/index.html",
-            "/login", "/main*.js", "/polyfills*.js",
-            "/runtime*.js", "/vendor*.js", "/styles*.css",
-            "/favicon.ico", "*.bundle.*", "/public/**", "/not-found"
+                "/", "/index.html",
+                "/login", "/main*.js", "/polyfills*.js",
+                "/runtime*.js", "/vendor*.js", "/styles*.css",
+                "/favicon.ico", "*.bundle.*", "/public/**", "/not-found"
         };
-        
 
         http.httpBasic()
-                    .and()
-                    .authorizeRequests()
-                    .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
-                    .antMatchers("/admin/**").hasRole("ADMIN")
-                    .antMatchers(staticResources).permitAll()
-                    .antMatchers("/h2-console", "/h2-console/**").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                    .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                .and()
+                .authorizeRequests()
+                .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers(staticResources).permitAll()
+                .antMatchers("/h2-console", "/h2-console/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetails).passwordEncoder(passwordEncoder());
     }
 
     @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        UserDetails userCustomer = User.withDefaultPasswordEncoder()
-            .username("Asiakas")
-            .password("pass")
-            .authorities("ROLE_USER")
-            .build();
-        UserDetails userSecret = User.withDefaultPasswordEncoder()
-            .username("Secret")
-            .password("secretpass")
-            .authorities("ROLE_SECRET")
-            .build();
-            UserDetails userAdmin = User.withDefaultPasswordEncoder()
-            .username("Admin")
-            .password("adminpass")
-            .authorities("ROLE_ADMIN")
-            .build();
-            
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(userCustomer);
-        manager.createUser(userSecret);
-        manager.createUser(userAdmin);
-        return manager;
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
-
-    
-
 
 }
