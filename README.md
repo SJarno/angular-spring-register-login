@@ -28,3 +28,4 @@ Basic authentication with Spring Security. The app checks for user principal, an
 ## Todo: 
 - Role based auth, for secret role, and admin role: In-memory users first, and basic register functions then.
 - Check for cors policy for fututer reference
+- Check if runs in production
