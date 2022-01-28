@@ -24,3 +24,5 @@ Basic authentication with Spring Security. The app checks for user principal, an
 
 ## Todo: 
 - Role based auth, for secret role, and admin role. 
+- Should check on cors policy, as it is not functioning atm. 
+    - The project works fine from the root, when serving static content. Requires to build the angular client first, and then running spring.
