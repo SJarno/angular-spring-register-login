@@ -23,6 +23,6 @@ Bootsrap 5
 Basic authentication with Spring Security. The app checks for user principal, and shows content accordingly.
 
 ## Todo: 
-- Role based auth, for secret role, and admin role. 
+- Role based auth, for secret role, and admin role: In-memory users first, and basic register functions then.
 - Should check on cors policy, as it is not functioning atm. 
     - The project works fine from the root, when serving static content. Requires to build the angular client first, and then running spring.
