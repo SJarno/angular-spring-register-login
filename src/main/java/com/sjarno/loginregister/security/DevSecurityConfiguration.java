@@ -34,6 +34,7 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
         protected void configure(HttpSecurity http) throws Exception {
 
                 http.headers().frameOptions().sameOrigin();
+                
                 String[] staticResources = new String[] {
                                 "/", "/index.html",
                                 "/login", "/main*.js", "/polyfills*.js",
@@ -47,7 +48,7 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
                                 .antMatchers("/admin/**").hasRole("ADMIN")
                                 .antMatchers(staticResources).permitAll()
-                                .antMatchers("/h2-console", "/h2-console/**").permitAll()
+                                //.antMatchers("/h2-console", "/h2-console/**").permitAll()
                                 .anyRequest().authenticated()
                                 .and()
                                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());

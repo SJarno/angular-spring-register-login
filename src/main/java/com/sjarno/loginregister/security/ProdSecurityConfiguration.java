@@ -47,7 +47,6 @@ public class ProdSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers(staticResources).permitAll()
-                .antMatchers("/h2-console", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
