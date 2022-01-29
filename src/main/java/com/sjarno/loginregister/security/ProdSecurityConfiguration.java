@@ -36,14 +36,17 @@ public class ProdSecurityConfiguration extends WebSecurityConfigurerAdapter {
         };
 
         http.httpBasic()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers(staticResources).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                    .and()
+                    .authorizeRequests()
+                    .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
+                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers(staticResources).permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                    .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                    .and()
+                    .formLogin()
+                    .loginPage("/");
     }
 
     @Override

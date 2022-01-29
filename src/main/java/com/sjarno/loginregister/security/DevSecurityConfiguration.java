@@ -27,12 +27,12 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
         protected void configure(HttpSecurity http) throws Exception {
 
                 http.headers().frameOptions().sameOrigin();
-                
+
                 String[] staticResources = new String[] {
                                 "/", "/index.html",
                                 "/login", "/main*.js", "/polyfills*.js",
                                 "/runtime*.js", "/vendor*.js", "/styles*.css",
-                                "/favicon.ico", "*.bundle.*", "/public/**", 
+                                "/favicon.ico", "*.bundle.*", "/public/**",
                                 "/error", "/register", "/404"
                 };
 
@@ -42,16 +42,20 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
                                 .antMatchers("/admin/**").hasRole("ADMIN")
                                 .antMatchers(staticResources).permitAll()
-                                //.antMatchers("/h2-console", "/h2-console/**").permitAll()
                                 .anyRequest().authenticated()
                                 .and()
-                                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                                .and()
+                                .formLogin()
+                                .loginPage("/");
 
         }
+
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
                 auth.userDetailsService(userDetails).passwordEncoder(passwordEncoder());
         }
+
         @Bean
         public PasswordEncoder passwordEncoder() {
                 return new BCryptPasswordEncoder();

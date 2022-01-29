@@ -17,7 +17,7 @@
             <a class="nav-link" routerLink="profile" *ngIf="isAuthenticated()">Profile</a>
         </li>
         <li>
-            <button (click)="logout()" *ngIf="isAuthenticated()">logout</button>
+            <button (click)="logout()" *ngIf="isAuthenticated()" class="btn btn-primary">logout</button>
         </li>
         
     </ul>
