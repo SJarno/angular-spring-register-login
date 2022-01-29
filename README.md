@@ -1,6 +1,8 @@
 # Angular/Spring security auth service Demo
 Demo app for register, login, logout with different user roles w/angular and spring security.
 
+**Fugly as what, but this is for testing and sandbox.**
+
 ## About
 
 Testing grounds for future reference. User can register to service, and depending on the role can check different content. 
