@@ -1,24 +1,17 @@
 package com.sjarno.loginregister.security;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Profile("prod")
@@ -38,7 +31,8 @@ public class ProdSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/", "/index.html",
                 "/login", "/main*.js", "/polyfills*.js",
                 "/runtime*.js", "/vendor*.js", "/styles*.css",
-                "/favicon.ico", "*.bundle.*", "/public/**", "/not-found"
+                "/favicon.ico", "*.bundle.*", "/public/**",
+                "/error", "/register", "/404"
         };
 
         http.httpBasic()
