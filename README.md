@@ -9,6 +9,18 @@ Testing grounds for future reference. User can register to service, and dependin
 
 The actual authentication is done with session with Spring Security. Tested in production at Heroku, and works. 
 
+## Features
+Three pre-made users with different roles using postConstruct:
+- user with role "ROLE_USER"
+- user with role "ROLE_SECRET"
+- user with role "ROLE_ADMIN"
+- basic public data for display - everyone can see this
+- regular user can see only profile info
+- secret can see secret info
+- admin for admin etc
+
+Basic idea is to check on authentication and roles on client -and server side.
+
 ## Stack
 Angular 13
 Bootsrap 5
