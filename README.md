@@ -27,7 +27,7 @@ Java 11
 ## Security
 Basic authentication with Spring Security. The app checks for user principal, and shows content accordingly. The dialog with the browser is intercepted using angulars http interceptor.
 
-## Todo: 
+## Todo
 - Role based auth, for secret role, and admin role: In-memory users first, and basic register functions then.
 - Check for cors policy for fututer reference
 - Junit Tests
