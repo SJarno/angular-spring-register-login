@@ -7,7 +7,7 @@ Demo app for register, login, logout with different user roles w/angular and spr
 
 Testing grounds for future reference. User can register to service, and depending on the role can check different content. 
 
-The actual authentication is done with session with Spring Security. Tested in production at Heroku, and works. 
+The actual authentication is done with session(Sessionid) and a token(xhr) with Spring Security, and Angular. Tested in production at Heroku, and works. 
 
 ## Features
 Three pre-made users with different roles using postConstruct:
@@ -37,6 +37,7 @@ Java 11
 
 ## Development
 - You can build continuesly to static file path with ng build --watch. Usefull if you are serving the content from root.
+- Other than that, you must build the static files with ng build for this to work.
 
 ## Security
 Basic authentication with Spring Security. The app checks for user principal, and shows content accordingly. The dialog with the browser is intercepted using angulars http interceptor.
