@@ -16,17 +16,20 @@ Bootsrap 5
 - #### Note: The above does not work when building, there is a @character, and something else, that prevents build
     Ended up using links on index page
     
- Spring Boot 2.6.3
+Spring Boot 2.6.3
  - Spring Security
+
+Java 11
 
 ## Development
 - You can build continuesly to static file path with ng build --watch. Usefull if you are serving the content from root.
 
 ## Security
-Basic authentication with Spring Security. The app checks for user principal, and shows content accordingly.
+Basic authentication with Spring Security. The app checks for user principal, and shows content accordingly. The dialog with the browser is intercepted using angulars http interceptor.
 
 ## Todo: 
 - Role based auth, for secret role, and admin role: In-memory users first, and basic register functions then.
 - Check for cors policy for fututer reference
 - Junit Tests
 - Validations
+- Angular Guards
