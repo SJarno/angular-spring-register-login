@@ -15,6 +15,7 @@ export class AppComponent {
 
   /* Authentication in base app? */
   constructor(private auth: AuthService, private http: HttpClient, private router: Router) {
+    console.log("Tsekataan autentikointi!");
     this.auth.authenticate(undefined, undefined);
     
   }
@@ -27,7 +28,7 @@ export class AppComponent {
       this.router.navigateByUrl('/');
     })).subscribe();
   }
-  /* Check on the upper level if user is authenticated, can be mode to a user page if necessary:  */
+  /* Check on the upper level if user is authenticated, redirect to user page if necessary:  */
   authenticated() { return this.auth.authenticated; }
   userRole(role: string) { return this.auth.listContainsRole(role); }
   getUsername() { return this.auth.username; }

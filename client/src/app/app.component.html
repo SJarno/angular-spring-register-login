@@ -10,19 +10,7 @@
   </div>
   <section class="row">
     <div class="col">
-      <section *ngIf="authenticated()">
-        <h2>Userinfo:</h2>
-        <button (click)="logout()" *ngIf="authenticated()">logout</button>
-        <h3>Username: {{getUsername()}}</h3>
-        <h3>Authenticated: {{authenticated()}}</h3>
-        <h3>Role User: {{userRole('ROLE_USER')}}</h3>
-        <h3>Role Secret: {{userRole('ROLE_SECRET')}}</h3>
-        <h3>Role Admin: {{userRole('ROLE_ADMIN')}}</h3>
-        <h3>List all available roles:</h3>
-        <ul *ngFor="let role of getRoles()">
-          <li>{{role.authority}}</li>
-        </ul>
-      </section>
+      
     </div>
     <div class="col">
       <router-outlet></router-outlet>

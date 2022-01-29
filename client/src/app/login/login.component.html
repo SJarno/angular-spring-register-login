@@ -1,4 +1,6 @@
 <form role="form" (submit)="login()">
+    <div class="alert alert-success" *ngIf="successLogin">{{successLogin}}</div>
+    <div class="alert alert-danger" *ngIf="errorLogin">{{errorLogin}}</div>
     <table>
         <thead>
             <tr>

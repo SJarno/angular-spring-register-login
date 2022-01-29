@@ -18,6 +18,7 @@ import { LoginInterceptorService } from './services/login-interceptor.service';
 
 import { SecretComponent } from './secret/secret.component';
 import { AdminComponent } from './admin/admin.component';
+import { UserDataComponent } from './user-data/user-data.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AdminComponent } from './admin/admin.component';
     PageNotFoundComponent,
     PublicDataComponent,
     SecretComponent,
-    AdminComponent
+    AdminComponent,
+    UserDataComponent
   ],
   imports: [
     BrowserModule,

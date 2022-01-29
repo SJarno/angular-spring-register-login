@@ -39,7 +39,8 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 "/", "/index.html",
                                 "/login", "/main*.js", "/polyfills*.js",
                                 "/runtime*.js", "/vendor*.js", "/styles*.css",
-                                "/favicon.ico", "*.bundle.*", "/public/**", "/not-found"
+                                "/favicon.ico", "*.bundle.*", "/public/**", 
+                                "/error", "/register", "/404"
                 };
 
                 http.httpBasic()

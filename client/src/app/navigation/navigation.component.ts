@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -8,12 +12,20 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
   }
   isAuthenticated() {
     return this.auth.authenticated;
+  }
+  logout() {
+    this.http.post(environment.baseUrl+'logout', {}).pipe( finalize(() => {
+      this.auth.authenticated = false;
+      this.auth.authorities = [];
+      this.auth.username = '';
+      this.router.navigateByUrl('/');
+    })).subscribe();
   }
 
 }

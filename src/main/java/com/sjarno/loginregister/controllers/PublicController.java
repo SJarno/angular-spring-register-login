@@ -26,11 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/public")
 public class PublicController {
 
-    @Autowired
-    private UserAccountRepository userAccountRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    
 
     /* return some public test data: */
     @GetMapping("/resource")
@@ -49,25 +45,6 @@ public class PublicController {
         /* Not applied */
     }
 
-    /* Default user for testing */
-    @PostConstruct
-    public void init() {
-        userAccountRepository.deleteAll();
-        UserAccount userAdmin = new UserAccount(
-                "admin", passwordEncoder.encode("123"),
-                new ArrayList<>(Arrays.asList("ROLE_ADMIN")));
-        UserAccount userSecret = new UserAccount(
-                "secret",
-                passwordEncoder.encode("123"),
-                new ArrayList<>(Arrays.asList("ROLE_SECRET")));
-        UserAccount user = new UserAccount(
-                "user",
-                passwordEncoder.encode("123"),
-                new ArrayList<>(Arrays.asList("ROLE_USER")));
-
-        userAccountRepository.save(userAdmin);
-        userAccountRepository.save(userSecret);
-        userAccountRepository.save(user);
-    }
+    
 
 }

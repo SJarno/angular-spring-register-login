@@ -17,6 +17,10 @@ export class ErrorInterceptorService implements HttpInterceptor{
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
+      if (error.status === 401) {
+        /* window.alert("Wrong credentials"); */
+        console.error("Status on 401, ei käyttöoikeuksia kohteeseen.");
+      }
       console.error(
         `Backend palautti koodin ${error.status}, runko: `, error.error);
     }

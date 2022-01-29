@@ -13,6 +13,12 @@
         <li>
             <a class="nav-link" routerLink="admin" *ngIf="isAuthenticated()">Admin</a>
         </li>
+        <li>
+            <a class="nav-link" routerLink="profile" *ngIf="isAuthenticated()">Profile</a>
+        </li>
+        <li>
+            <button (click)="logout()" *ngIf="isAuthenticated()">logout</button>
+        </li>
         
     </ul>
 </nav>

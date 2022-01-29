@@ -9,6 +9,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   credentials = { 'username': '', 'password': '' };
+  errorLogin?:string;
+  successLogin?:string;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.authService.authenticate(this.credentials, () => {
-      this.router.navigateByUrl('/public');
+      this.router.navigateByUrl('/profile');
+  
     });
     return false;
   }
