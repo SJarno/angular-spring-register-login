@@ -32,21 +32,21 @@ public class ProdSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/login", "/main*.js", "/polyfills*.js",
                 "/runtime*.js", "/vendor*.js", "/styles*.css",
                 "/favicon.ico", "*.bundle.*", "/public/**",
-                "/error", "/register", "/404"
+                "/error", "/register", "/404", "**/bootstrap*"
         };
 
         http.httpBasic()
-                    .and()
-                    .authorizeRequests()
-                    .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
-                    .antMatchers("/admin/**").hasRole("ADMIN")
-                    .antMatchers(staticResources).permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                    .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                    .and()
-                    .formLogin()
-                    .loginPage("/");
+                .and()
+                .authorizeRequests()
+                .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers(staticResources).permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and()
+                .formLogin()
+                .loginPage("/");
     }
 
     @Override

@@ -27,14 +27,14 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
 
-                http.headers().frameOptions().sameOrigin();
+                //http.headers().frameOptions().sameOrigin();
 
                 String[] staticResources = new String[] {
                                 "/", "/index.html",
                                 "/login", "/main*.js", "/polyfills*.js",
                                 "/runtime*.js", "/vendor*.js", "/styles*.css",
                                 "/favicon.ico", "*.bundle.*", "/public/**",
-                                "/error", "/register", "/404"
+                                "/error", "/register", "/404", "**/bootstrap*"
                 };
 
                 /* http.csrf().disable(); */
@@ -45,13 +45,12 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
                                 .antMatchers("/admin/**").hasRole("ADMIN")
                                 .antMatchers(staticResources).permitAll()
-                                //.antMatchers(HttpMethod.POST, "/public/register").permitAll()
                                 .anyRequest().authenticated()
                                 .and()
                                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                                .and()
+                                /* .and()
                                 .formLogin()
-                                .loginPage("/")
+                                .loginPage("/") */
                                 ;
 
         }
