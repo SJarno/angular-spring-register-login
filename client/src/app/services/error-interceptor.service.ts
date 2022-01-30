@@ -9,11 +9,11 @@ export class ErrorInterceptorService implements HttpInterceptor{
 
   constructor() { }
   handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Jotain meni vikaan, yritä myöhemmin uudelleen.'
+    let errorMessage = 'An error occured: '
     
     if (error.status === 0 ) {
       // A client-side or network error occurred. Handle it accordingly.
-      console.error('Tapahtui virhe:', error.error);
+      console.error('An error occured:', error.error);
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
@@ -21,8 +21,9 @@ export class ErrorInterceptorService implements HttpInterceptor{
         /* window.alert("Wrong credentials"); */
         console.error("Status on 401, ei käyttöoikeuksia kohteeseen.");
       }
+      errorMessage += error.error;
       console.error(
-        `Backend palautti koodin ${error.status}, runko: `, error.error);
+        `Backend returned error ${error.status}, runko: `, error.error);
     }
     // display error on browser:
     //window.alert(errorMessage);

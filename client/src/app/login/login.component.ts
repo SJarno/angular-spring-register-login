@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         }
 
       },
-      error: (e: any) => { this.errorLoginMessage = `Wrong credentials: ${e}` }
+      error: (e: any) => { this.errorLoginMessage = `Wrong credentials` }
     });
 
   }
