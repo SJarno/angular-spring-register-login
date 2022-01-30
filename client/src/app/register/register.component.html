@@ -1,5 +1,5 @@
-<form>
-    <table >
+<form (ngSubmit)="createUser()" *ngIf="!submitted">
+    <table>
         <thead>
             <tr>
                 <th>Register</th>
@@ -10,26 +10,33 @@
                 <td><label for="username">Username:</label></td>
             </tr>
             <tr>
-                <td><input type="text" name="username"></td>
+                <td><input type="text" name="username" [(ngModel)]="userAccount.username"></td>
             </tr>
             <tr>
                 <td><label for="password">Password</label></td>
             </tr>
             <tr>
-                <td><input type="text" name="password"></td>
+                <td><input type="text" name="password" [(ngModel)]="userAccount.password"></td>
             </tr>
             <tr>
-                <td><label for="retype-password">Type password again</label></td>         
+                <td><label for="retype-password">Type password again</label></td>
             </tr>
             <tr>
-                <td><input type="password" name="retype-password"></td> 
+                <td><input type="password" name="retype-password"></td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
-                
+
                 <td><input type="submit" value="Register" class="btn btn-primary"></td>
             </tr>
         </tfoot>
     </table>
 </form>
+
+<div *ngIf="submitted" class="alert alert-success">
+    <h4>User register success!</h4>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger">
+    <h4>{{errorMessage}}</h4>
+</div>

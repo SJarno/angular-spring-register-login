@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,12 +37,15 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 "/error", "/register", "/404"
                 };
 
+                /* http.csrf().disable(); */
+
                 http.httpBasic()
                                 .and()
                                 .authorizeRequests()
                                 .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
                                 .antMatchers("/admin/**").hasRole("ADMIN")
                                 .antMatchers(staticResources).permitAll()
+                                //.antMatchers(HttpMethod.POST, "/public/register").permitAll()
                                 .anyRequest().authenticated()
                                 .and()
                                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())

@@ -1,6 +1,6 @@
-<form role="form" (submit)="login()">
-    <div class="alert alert-success" *ngIf="successLogin">{{successLogin}}</div>
-    <div class="alert alert-danger" *ngIf="errorLogin">{{errorLogin}}</div>
+<form role="form" (submit)="login()" *ngIf="!successLogin">
+    <!-- <div class="alert alert-success" *ngIf="successLogin">{{successLogin}}</div>
+    <div class="alert alert-danger" *ngIf="errorLogin">{{errorLogin}}</div> -->
     <table>
         <thead>
             <tr>
@@ -24,9 +24,13 @@
         <tfoot>
             <tr>
                 <td><input type="submit" value="Login" class="btn btn-primary"></td>
-                <!-- <td><button class="btn btn-primary">Login</button></td> -->
             </tr>
         </tfoot>
     </table>
 </form>
-
+<div *ngIf="successLogin" class="alert alert-success">
+    <h4>Logged in!</h4>
+</div>
+<div *ngIf="errorLoginMessage" class="alert alert-danger">
+    <h4>{{errorLoginMessage}}</h4>
+</div>

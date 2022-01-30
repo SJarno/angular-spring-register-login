@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { response } from '../response';
+import { UserAccount } from '../user-account';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { response } from '../response';
 export class ServerRequestsService {
 
   url = environment.baseUrl;
-  testi: any;
+  
   constructor(private http: HttpClient) { }
 
   getPublicData(): Observable<any> {
@@ -21,5 +22,8 @@ export class ServerRequestsService {
   }
   getAdminData(): Observable<any> {
     return this.http.get<any>(this.url+"admin/resource");
+  }
+  createNewUser(data:UserAccount): Observable<any> {
+    return this.http.post<UserAccount[]>(this.url+"public/register", data);
   }
 }

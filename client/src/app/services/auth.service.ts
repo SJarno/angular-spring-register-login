@@ -10,27 +10,19 @@ export class AuthService {
   username?: string;
   authenticated: boolean = false;
   authorities: any = [];
-  /* Todo: user info here from principal */
+  errorMessage!: string;
 
   constructor(private http: HttpClient) { }
 
-  /* Should authenticate user */
-  authenticate(credentials: any, callback: any) {
+  /* Should authenticate user, original method: */
+  testAuthenticate(credentials: any, callback: any) {
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
     /* Place headers to request */
     this.http.get(environment.baseUrl + 'user', { headers: headers }).subscribe((response) => {
       let result: any = response;
-      console.log('Vastaus: \n' + result);
-      console.log("Nimi " + result['name']);
-      console.log("Authorities " + result['authorities']);
-      this.printForTesting(result['authorities']);
-
-      for (const key in result['credentials']) {
-        console.log(key);
-      }
-
+      
       /* If the principal is found, place values: */
       if (result['name']) {
         this.username = result['name'];
@@ -41,11 +33,21 @@ export class AuthService {
         this.authenticated = false;
         this.authorities = [];
         this.username = "";
+        
 
       }
 
       return callback && callback();
     });
+  }
+  /* Rather user this one, to subscribe later and display errors: */
+  authenticate(credentials: any, callback: any) {
+    const headers = new HttpHeaders(credentials ? {
+      authorization: 'Basic ' + btoa(credentials.username + ':'+credentials.password)
+    } : {});
+    return this.http.get(environment.baseUrl + 'user', {headers: headers});
+      
+    
   }
   /* For */
   printForTesting(list: []) {
