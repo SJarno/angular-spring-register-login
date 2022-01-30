@@ -11,10 +11,14 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
+  authenticated?: boolean;
 
-  constructor(private auth: AuthService, private http: HttpClient, private router: Router) { }
+  constructor(private auth: AuthService, private http: HttpClient, private router: Router) {
+    this.authenticated = this.auth.authenticated;
+   }
 
   ngOnInit(): void {
+    this.authenticated = this.auth.authenticated;
   }
   isAuthenticated() {
     return this.auth.authenticated;

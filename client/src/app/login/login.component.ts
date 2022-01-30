@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
   /* The original login, according to a tutorial: */
   /* login() {
-    this.authService.authenticate(this.credentials, () => {
+    this.authService.testAuthenticate(this.credentials, () => {
       this.router.navigateByUrl('/profile');
 
     });
@@ -47,8 +47,9 @@ export class LoginComponent implements OnInit {
       },
       error: (e: any) => { this.errorLoginMessage = `Wrong credentials` }
     });
-
+    
   }
+  
 
 
 }

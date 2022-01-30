@@ -1,4 +1,4 @@
-<form role="form" (submit)="login()" *ngIf="!successLogin">
+<form role="form" (submit)="login()">
     <!-- <div class="alert alert-success" *ngIf="successLogin">{{successLogin}}</div>
     <div class="alert alert-danger" *ngIf="errorLogin">{{errorLogin}}</div> -->
     <table>
@@ -28,9 +28,9 @@
         </tfoot>
     </table>
 </form>
-<div *ngIf="successLogin" class="alert alert-success">
+<!-- <div *ngIf="successLogin" class="alert alert-success">
     <h4>Logged in!</h4>
-</div>
+</div> -->
 <div *ngIf="errorLoginMessage" class="alert alert-danger">
     <h4>{{errorLoginMessage}}</h4>
 </div>

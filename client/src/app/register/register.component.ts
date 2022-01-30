@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
     this.dataService.createNewUser(this.userAccount).subscribe({
       next: (res) => {
         this.submitted = true;
+        this.errorMessage = '';
         console.log(res);
       },
       

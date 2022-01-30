@@ -16,7 +16,7 @@ export class AppComponent {
   /* Authentication in base app? */
   constructor(private auth: AuthService, private http: HttpClient, private router: Router) {
     console.log("Tsekataan autentikointi!");
-    this.auth.authenticate(undefined, undefined);
+    this.auth.testAuthenticate(undefined, undefined);
     
   }
   

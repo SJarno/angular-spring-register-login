@@ -51,7 +51,8 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                                 .and()
                                 .formLogin()
-                                .loginPage("/");
+                                .loginPage("/")
+                                ;
 
         }
 
