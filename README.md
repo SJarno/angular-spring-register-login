@@ -51,3 +51,5 @@ Some basic Angular guards added, mainly for redirecting on the client side.
 - Junit Tests
 - Validations
 
+## Forking, participating etc. 
+Please notify me if you are willing to participate on this in any way. You can do this via email(on my profile page), or on just commenting on the discussion page provided.
