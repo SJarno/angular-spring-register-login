@@ -13,9 +13,13 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>login-register</name>
 	<description>Demo project for Spring Boot</description>
+
 	<properties>
 		<java.version>11</java.version>
+		<fluentlenium.version>5.0.1</fluentlenium.version>
+		<selenium.version>4.1.1</selenium.version>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,6 +66,25 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Fluentlenium: -->
+		<dependency>
+			<groupId>org.fluentlenium</groupId>
+			<artifactId>fluentlenium-junit</artifactId>
+			<version>${fluentlenium.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.fluentlenium</groupId>
+			<artifactId>fluentlenium-assertj</artifactId>
+			<version>${fluentlenium.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>htmlunit-driver</artifactId>
+			<version>3.55.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -70,6 +93,26 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.7</version>
+                <configuration>
+                    <excludes>
+                        <!-- skipataan app-tiedosto -->
+                        <exclude>**/*LoginRegisterApplication.*</exclude>
+                        <exclude>**/*security/*</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 

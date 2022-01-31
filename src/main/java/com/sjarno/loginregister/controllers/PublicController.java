@@ -1,22 +1,15 @@
 package com.sjarno.loginregister.controllers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.annotation.PostConstruct;
-
 import com.sjarno.loginregister.models.UserAccount;
-import com.sjarno.loginregister.repositories.UserAccountRepository;
 import com.sjarno.loginregister.services.UserAccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +25,7 @@ public class PublicController {
     private UserAccountService userAccountService;
 
     /* return some public test data: */
+    
     @GetMapping("/resource")
     public Map<String, Object> testData() {
         Map<String, Object> data = new HashMap<>();
@@ -40,6 +34,7 @@ public class PublicController {
         // ResponseEntity<Map<String, Object>> entity = new
         // ResponseEntity<>(HttpStatus.FOUND);
 
+        //return new ResponseEntity<>(data, HttpStatus.FOUND);
         return data;
     }
 
@@ -53,6 +48,10 @@ public class PublicController {
             System.out.println(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    @GetMapping("/test")
+    public String test() {
+        return "Hei maailma";
     }
 
     

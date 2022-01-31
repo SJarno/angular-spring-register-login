@@ -27,7 +27,7 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
 
-                //http.headers().frameOptions().sameOrigin();
+                http.headers().frameOptions().sameOrigin();
 
                 String[] staticResources = new String[] {
                                 "/", "/index.html",
@@ -44,13 +44,14 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 .authorizeRequests()
                                 .antMatchers("/secret/**").hasAnyRole("SECRET", "ADMIN")
                                 .antMatchers("/admin/**").hasRole("ADMIN")
+                                .antMatchers(HttpMethod.GET, "/public/test").permitAll()
                                 .antMatchers(staticResources).permitAll()
                                 .anyRequest().authenticated()
                                 .and()
                                 .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                                /* .and()
+                                .and()
                                 .formLogin()
-                                .loginPage("/") */
+                                .loginPage("/")
                                 ;
 
         }
